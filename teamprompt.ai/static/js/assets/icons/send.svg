@@ -1,0 +1,29 @@
+var _path;
+var _excluded = ["title", "titleId"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+import * as React from "react";
+function SvgSend(_ref, svgRef) {
+  var title = _ref.title,
+    titleId = _ref.titleId,
+    props = _objectWithoutProperties(_ref, _excluded);
+  return /*#__PURE__*/React.createElement("svg", _extends({
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/React.createElement("title", {
+    id: titleId
+  }, title) : null, _path || (_path = /*#__PURE__*/React.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M21.0407 3.45924C21.2333 3.65184 21.3063 3.93372 21.2315 4.19561L20.5142 6.70606C19.0964 11.6684 17.1752 16.4728 14.7805 21.0444L14.4572 21.6617C14.3465 21.873 14.1418 22.0191 13.906 22.0551C13.6701 22.0911 13.4312 22.0127 13.2625 21.844L9.19663 17.7782C8.92013 17.5017 8.90246 17.0591 9.15602 16.7615L9.30391 16.5879C10.7035 14.9449 11.9803 13.2025 13.1245 11.3749C11.2714 12.5353 9.50581 13.8319 7.84263 15.2547L7.73963 15.3429C7.44204 15.5974 6.99867 15.5802 6.72175 15.3033L2.65589 11.2374C2.48718 11.0687 2.40881 10.8298 2.4448 10.5939C2.4808 10.3581 2.62687 10.1534 2.83821 10.0427L3.45546 9.7194C8.02713 7.32471 12.8316 5.4035 17.7939 3.9857L20.3043 3.26843C20.5662 3.1936 20.8481 3.26665 21.0407 3.45924ZM19.4183 5.08159L18.2059 5.42798C13.4456 6.78808 8.83351 8.6208 4.43842 10.8986L7.29421 13.7544C9.55295 11.8694 11.9886 10.2064 14.5674 8.78864L14.8457 8.63565C15.1383 8.47479 15.502 8.52673 15.7379 8.76306C15.9737 8.99939 16.025 9.36318 15.8636 9.65547L15.667 10.0113C14.259 12.5608 12.6108 14.9698 10.7452 17.2054L13.6013 20.0615C15.8791 15.6664 17.7118 11.0543 19.0719 6.29398L19.4183 5.08159Z"
+  })));
+}
+var ForwardRef = /*#__PURE__*/React.forwardRef(SvgSend);
+export default __webpack_public_path__ + "static/media/send.9bfa82335625e92331636ce3ab648076.svg";
+export { ForwardRef as ReactComponent };
