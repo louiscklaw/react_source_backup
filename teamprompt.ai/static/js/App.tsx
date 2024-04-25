@@ -17,68 +17,68 @@ import DrawerProvider from 'provider/DrawerProvider';
 import PromptListPage from 'pages/PromptListPage';
 
 const App: React.FC = () => {
-    const { loadCategories } = useCategoryStore();
-    const [isLoading, setIsLoading] = useState(true);
-    // const navigate = useNavigate();
+  const { loadCategories } = useCategoryStore();
+  const [isLoading, setIsLoading] = useState(true);
+  // const navigate = useNavigate();
 
-    useEffect(() => {
-        loadCategories().then(() => {
-            setIsLoading(false);
-        });
-    }, [loadCategories]);
+  useEffect(() => {
+    loadCategories().then(() => {
+      setIsLoading(false);
+    });
+  }, [loadCategories]);
 
-    const onResize = () => {
-        setTimeout(() => {
-            calculateWindowHeight();
-        }, 350);
+  const onResize = () => {
+    setTimeout(() => {
+      calculateWindowHeight();
+    }, 350);
+  };
+
+  useEffect(() => {
+    calculateWindowHeight(true);
+    if (screen.orientation?.lock) {
+      screen.orientation.lock('portrait').catch(() => {
+        // console.error('Failed to lock screen orientation:', error);
+      });
+    }
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
     };
+  }, []);
 
-    useEffect(() => {
-        calculateWindowHeight(true);
-        if (screen.orientation?.lock) {
-            screen.orientation.lock('portrait').catch(() => {
-                // console.error('Failed to lock screen orientation:', error);
-            });
-        }
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('resize', onResize);
-        };
-    }, []);
+  if (isLoading) return null;
 
-    if (isLoading) return null;
-
-    return (
-        <GoogleOAuthProvider clientId="710332269966-boh9g9g0p6ramk5hf4dhrflqti6birg6.apps.googleusercontent.com">
-            <ThemeProvider theme={theme}>
-                <ModalProvider>
-                    <DrawerProvider>
-                        <ConfirmationMessageProvider>
-                            <Routes>
-                                {/* <Route path="/dashboard" element={<Authenticated />}>
+  return (
+    <GoogleOAuthProvider clientId="710332269966-boh9g9g0p6ramk5hf4dhrflqti6birg6.apps.googleusercontent.com">
+      <ThemeProvider theme={theme}>
+        <ModalProvider>
+          <DrawerProvider>
+            <ConfirmationMessageProvider>
+              <Routes>
+                {/* <Route path="/dashboard" element={<Authenticated />}>
                             <Route index element={<Dashboard />} />
                             <Route path="chat-room" element={<ChatRoom />} />
                             <Route path="chat-room/:conversationId" element={<ChatRoom />} />
                             <Route path="category/:categoryId" element={<CategoryPage />} />
                             <Route path="prompt/:promptId" element={<PromptPage />} />
                         </Route> */}
-                                <Route index element={<Dashboard />} />
-                                <Route path="login" element={<Login />} />
-                                {/* chat-room: Supports queries: { question: string } */}
-                                <Route path="chat-room" element={<ChatRoom />} />
-                                <Route path="chat-room/:conversationId" element={<ChatRoom />} />
-                                <Route path="category/:categoryId" element={<CategoryPage />} />
-                                <Route path="prompts" element={<PromptListPage />} />
-                                <Route path="prompt/:promptId" element={<PromptPage />} />
-                                <Route path="/404" element={<NoMatch />} />
-                                <Route path="*" element={<Navigate replace to="/404" />} />
-                            </Routes>
-                        </ConfirmationMessageProvider>
-                    </DrawerProvider>
-                </ModalProvider>
-            </ThemeProvider>
-        </GoogleOAuthProvider>
-    );
+                <Route index element={<Dashboard />} />
+                <Route path="login" element={<Login />} />
+                {/* chat-room: Supports queries: { question: string } */}
+                <Route path="chat-room" element={<ChatRoom />} />
+                <Route path="chat-room/:conversationId" element={<ChatRoom />} />
+                <Route path="category/:categoryId" element={<CategoryPage />} />
+                <Route path="prompts" element={<PromptListPage />} />
+                <Route path="prompt/:promptId" element={<PromptPage />} />
+                <Route path="/404" element={<NoMatch />} />
+                <Route path="*" element={<Navigate replace to="/404" />} />
+              </Routes>
+            </ConfirmationMessageProvider>
+          </DrawerProvider>
+        </ModalProvider>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
+  );
 };
 
 export default App;

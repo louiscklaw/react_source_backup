@@ -13,12 +13,12 @@ import type { FlexProps } from './types';
 //     `;
 
 const Flex = styled(Box)<FlexProps>`
-    position: relative;
-    display: flex;
-    ${({ gap = '16px' }) => css`
-        gap: ${gap};
-    `};
-    ${flexbox}
+  position: relative;
+  display: flex;
+  ${({ gap = '16px' }) => css`
+    gap: ${gap};
+  `};
+  ${flexbox}
 `;
 
 export default Flex;

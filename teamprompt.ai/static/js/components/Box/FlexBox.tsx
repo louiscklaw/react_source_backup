@@ -4,7 +4,7 @@ import Box from './Box';
 import type { FlexBoxProps } from './types';
 
 const FlexBox = styled(Box)<FlexBoxProps>`
-    ${flexbox}
+  ${flexbox}
 `;
 
 export default FlexBox;

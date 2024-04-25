@@ -3,8 +3,8 @@ import { background, border, layout, position, space, color, display } from 'sty
 import type { BoxProps } from './types';
 
 const Box = styled.div<BoxProps>`
-    ${background}
-    ${border}
+  ${background}
+  ${border}
     ${layout}
     ${position}
     ${space}

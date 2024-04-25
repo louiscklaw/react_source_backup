@@ -4,14 +4,14 @@ import Box from './Box';
 import type { GridBoxProps } from './types';
 
 const GridBox = styled(Box)<GridBoxProps>`
-    ${grid}
-    ${alignSelf}
+  ${grid}
+  ${alignSelf}
     ${justifySelf}
     ${order}
 `;
 
 GridBox.defaultProps = {
-    gridColumn: 'span 1',
+  gridColumn: 'span 1',
 };
 
 export default GridBox;

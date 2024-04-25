@@ -5,22 +5,21 @@ import React from 'react';
 import Modal from './Modal';
 
 interface Props {
-    onLoginSuccess?: Function;
+  onLoginSuccess?: Function;
 }
 
-const RequireLoginModal: React.FC<Props> = ({ onLoginSuccess })=> {
-    const { closeModal } = useModalContext();
-    const onSuccess = () => {
-        closeModal();
-        onLoginSuccess?.();
-    }
+const RequireLoginModal: React.FC<Props> = ({ onLoginSuccess }) => {
+  const { closeModal } = useModalContext();
+  const onSuccess = () => {
+    closeModal();
+    onLoginSuccess?.();
+  };
 
-    return (
-        <Modal title="Login">
-            <LoginForm onLoginSuccess={onSuccess} />
-        </Modal>
-    );
-}
+  return (
+    <Modal title="Login">
+      <LoginForm onLoginSuccess={onSuccess} />
+    </Modal>
+  );
+};
 
 export default RequireLoginModal;
-

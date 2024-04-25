@@ -16,61 +16,61 @@ import { Text } from 'components/Text';
 import styled from 'styled-components';
 
 const Fixed = styled.div`
-    position: sticky;
-    z-index: 10;
-    top: 0;
+  position: sticky;
+  z-index: 10;
+  top: 0;
 `;
 
 const ChatButton = styled(IconButton)`
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    min-height: 52px;
-    min-width: 52px;
-    border-radius: 100%;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  min-height: 52px;
+  min-width: 52px;
+  border-radius: 100%;
 `;
 
 const Dashboard: React.FC = () => {
-    const navigate = useNavigate();
-    const { openModal } = useModalContext();
-    const { categories, session } = useCategoryStore();
-    const requireLogin = useRequireLogin();
-    const allowAddCategory = session?.role === 'admin';
+  const navigate = useNavigate();
+  const { openModal } = useModalContext();
+  const { categories, session } = useCategoryStore();
+  const requireLogin = useRequireLogin();
+  const allowAddCategory = session?.role === 'admin';
 
-    const mainCategories = useMemo(() => categories.filter((c) => !c.parentCategoryId), [categories]);
+  const mainCategories = useMemo(() => categories.filter(c => !c.parentCategoryId), [categories]);
 
-    const onNewCategoryClick = requireLogin(() => {
-        openModal(<AddCategoryModal />);
-    });
+  const onNewCategoryClick = requireLogin(() => {
+    openModal(<AddCategoryModal />);
+  });
 
-    const onAskNow = requireLogin(() => {
-        // @todo - pass template
-        navigate('/chat-room');
-    });
+  const onAskNow = requireLogin(() => {
+    // @todo - pass template
+    navigate('/chat-room');
+  });
 
-    return (
-        <Page>
-            <Header withProfile />
-            <Body noPadding withSafeArea>
-                <Fixed>
-                    <SearchBar />
-                </Fixed>
-                <Flex justifyContent="space-between" padding="32px 24px 0 24px">
-                    <Text variant="title">Main Category</Text>
-                    {allowAddCategory && (
-                        <PlainButton primary onClick={onNewCategoryClick}>
-                            <SquareAdd />
-                            Add category
-                        </PlainButton>
-                    )}
-                </Flex>
-                <Flex flexDirection="column" padding="0 16px 32px">
-                    <CategoryList categories={mainCategories} hideDescription withNullCategory />
-                </Flex>
-                <ChatButton primary solid icon={CommentAdd} onClick={onAskNow} />
-            </Body>
-        </Page>
-    );
+  return (
+    <Page>
+      <Header withProfile />
+      <Body noPadding withSafeArea>
+        <Fixed>
+          <SearchBar />
+        </Fixed>
+        <Flex justifyContent="space-between" padding="32px 24px 0 24px">
+          <Text variant="title">Main Category</Text>
+          {allowAddCategory && (
+            <PlainButton primary onClick={onNewCategoryClick}>
+              <SquareAdd />
+              Add category
+            </PlainButton>
+          )}
+        </Flex>
+        <Flex flexDirection="column" padding="0 16px 32px">
+          <CategoryList categories={mainCategories} hideDescription withNullCategory />
+        </Flex>
+        <ChatButton primary solid icon={CommentAdd} onClick={onAskNow} />
+      </Body>
+    </Page>
+  );
 };
 
 export default Dashboard;
